@@ -2,7 +2,11 @@ package com.example.shoppinglistcleanarchitecture.domain
 
 data class ShoppingItem (
     val name : String,
-    val id : Int,
     val count : Int,
-    val enabled : Boolean
-        )
+    val enabled : Boolean,
+    var id : Int = UNDEFIND_ID
+){
+    companion object{
+        const val UNDEFIND_ID = -1
+    }
+}
