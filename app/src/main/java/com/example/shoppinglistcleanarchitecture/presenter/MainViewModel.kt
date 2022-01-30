@@ -21,4 +21,15 @@ class MainViewModel : ViewModel() {
         val list = getShoppingListUseCase.getShoppingList()
         shoppingList.value = list
     }
+
+    fun deleteShoppingItem(item: ShoppingItem){
+        deleteShoppingItemUseCase.deleteShoppingItem(item)
+        getShoppingList()
+    }
+
+    fun editShopList(item: ShoppingItem){
+        val editItem = item.copy(enabled = !item.enabled)
+        editShoppingItemUseCase.editShoppingItemCase(editItem)
+        getShoppingList()
+    }
 }
