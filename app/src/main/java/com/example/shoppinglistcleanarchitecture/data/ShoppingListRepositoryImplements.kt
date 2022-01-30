@@ -1,0 +1,7 @@
+package com.example.shoppinglistcleanarchitecture.data
+
+import com.example.shoppinglistcleanarchitecture.domain.ShoppingListRepository
+
+object ShoppingListRepositoryImplements: ShoppingListRepository{
+
+}
