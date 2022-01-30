@@ -9,7 +9,7 @@ object ShoppingListRepositoryImplements: ShoppingListRepository{
     private var autoIncrementId = 0
 
     override fun addShoppingItem(item: ShoppingItem) {
-        if (item.id == ShoppingItem.UNDEFIND_ID) { item.id = autoIncrementId++ }
+        if (item.id == ShoppingItem.UNDEFINED_ID) { item.id = autoIncrementId++ }
         shoppingList.add(item)
     }
 
