@@ -4,22 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.shoppinglistcleanarchitecture.domain.ShoppingItem
 import com.example.shoppinglistcleanarchitecture.domain.ShoppingListRepository
-import java.lang.RuntimeException
 
-object ShoppingListRepositoryImplements: ShoppingListRepository{
+object ShoppingListRepositoryImplements : ShoppingListRepository {
     private val shoppingList = mutableListOf<ShoppingItem>()
     private val shoppingListLD = MutableLiveData<List<ShoppingItem>>()
     private var autoIncrementId = 0
 
     init {
-        for (i in 0  until 10){
+        for (i in 0 until 10) {
             val item = ShoppingItem("Name $i", i, true)
             addShoppingItem(item)
         }
     }
 
     override fun addShoppingItem(item: ShoppingItem) {
-        if (item.id == ShoppingItem.UNDEFINED_ID) { item.id = autoIncrementId++ }
+        if (item.id == ShoppingItem.UNDEFINED_ID) {
+            item.id = autoIncrementId++
+        }
         shoppingList.add(item)
         updateList()
     }
@@ -37,15 +38,14 @@ object ShoppingListRepositoryImplements: ShoppingListRepository{
 
     override fun getShoppingItem(id: Int): ShoppingItem {
         return shoppingList.find { it.id == id }
-            ?:
-            throw RuntimeException("Shopping list id $id is null")
+            ?: throw RuntimeException("Shopping list id $id is null")
     }
 
     override fun getShoppingList(): LiveData<List<ShoppingItem>> {
         return shoppingListLD
     }
 
-    private fun updateList(){
+    private fun updateList() {
         shoppingListLD.value = shoppingList.toList()
     }
 }

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingListCleanArchitecture">
         <activity
+            android:name=".ItemShopDisabledActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ItemShopEnabledActivity"
+            android:exported="false" />
+        <activity
             android:name=".presenter.MainActivity"
             android:exported="true">
             <intent-filter>

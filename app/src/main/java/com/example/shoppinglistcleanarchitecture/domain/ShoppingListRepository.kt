@@ -9,7 +9,7 @@ interface ShoppingListRepository {
 
     fun editShoppingItemCase(item: ShoppingItem)
 
-    fun getShoppingItem(id: Int) : ShoppingItem
+    fun getShoppingItem(id: Int): ShoppingItem
 
-    fun getShoppingList() : LiveData<List<ShoppingItem>>
+    fun getShoppingList(): LiveData<List<ShoppingItem>>
 }
