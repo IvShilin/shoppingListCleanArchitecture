@@ -8,20 +8,37 @@ import com.example.shoppinglistcleanarchitecture.R
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: MainViewModel
+    private lateinit var shopListAdapter: ShopListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val adapter = ShopListAdapter()
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_shop_list)
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-        recyclerView.adapter = adapter
-
+        setupRecyclerView()
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.shoppingList.observe(this) {
-            adapter.list = it
+            shopListAdapter.list = it
         }
     }
 
+    private fun setupRecyclerView() {
+        val recyclerViewList = findViewById<RecyclerView>(R.id.rv_shop_list)
+        with(recyclerViewList) {
+            shopListAdapter = ShopListAdapter()
+            adapter = shopListAdapter
+            recycledViewPool.setMaxRecycledViews(
+                ShopListAdapter.VIEW_TYPE_ENABLED,
+                ShopListAdapter.MAX_POOL_SIZE
+            )
+            recycledViewPool.setMaxRecycledViews(
+                ShopListAdapter.VIEW_TYPE_DISABLED,
+                ShopListAdapter.MAX_POOL_SIZE
+            )
+        }
+        shopListAdapter.onShopItemLongClickListener = {
+            viewModel.changeEnableState(it)
+        }
+
+    }
 
 }
