@@ -22,12 +22,12 @@ class MainViewModel : ViewModel() {
 
     fun editShopList(item: ShoppingItem) {
         val editItem = item.copy(enabled = !item.enabled)
-        editShoppingItemUseCase.editShoppingItemCase(editItem)
+        editShoppingItemUseCase.editShoppingItem(editItem)
     }
 
     fun changeEnableState(item: ShoppingItem) {
         val newItem = item.copy(enabled = !item.enabled)
-        editShoppingItemUseCase.editShoppingItemCase(newItem)
+        editShoppingItemUseCase.editShoppingItem(newItem)
     }
 
 }

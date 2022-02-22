@@ -10,10 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingListCleanArchitecture">
         <activity
-            android:name=".ItemShopDisabledActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ItemShopEnabledActivity"
+            android:name=".presenter.ShopItemActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".presenter.MainActivity"
