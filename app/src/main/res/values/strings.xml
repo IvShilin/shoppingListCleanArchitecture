@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShoppingListCleanArchitecture</string>
+    <string name="errorInputCount">Ошибка!</string>
+    <string name="errorInputName" />
 </resources>
