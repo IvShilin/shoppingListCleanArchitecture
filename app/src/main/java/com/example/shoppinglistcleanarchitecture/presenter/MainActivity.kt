@@ -1,8 +1,6 @@
 package com.example.shoppinglistcleanarchitecture.presenter
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -46,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 ShopListAdapter.MAX_POOL_SIZE
             )
         }
-
         setupLongClickListener()
         setupClickListener()
         setupSwipeListener(recyclerViewList)
@@ -77,7 +74,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListener() {
         shopListAdapter.onShopItemClickListener = {
-            Log.d("Click", "$it")
             val intent = newIntentEditItem(this, it.id)
             startActivity(intent)
         }

@@ -115,7 +115,7 @@ class ShopItemActivity : AppCompatActivity() {
 
         screenMode = mode
 
-        if (screenMode == MODE_EDIT && !intent.hasExtra(EXTRA_SHOP_ITEM_ID)) {
+        if (screenMode == MODE_EDIT) {
             if (!intent.hasExtra(EXTRA_SHOP_ITEM_ID)) {
                 throw java.lang.RuntimeException("Param shop item id is absent")
             }
@@ -128,8 +128,7 @@ class ShopItemActivity : AppCompatActivity() {
         textInputLayoutCount = findViewById(R.id.textInputLayout_count)
         editTextName = findViewById(R.id.editText_name)
         editTextCount = findViewById(R.id.editText_count)
-        buttonSave = findViewById(R.id.button_add_shop_item)
-
+        buttonSave = findViewById(R.id.save_button)
     }
 
     companion object {
@@ -139,7 +138,6 @@ class ShopItemActivity : AppCompatActivity() {
         private const val MODE_ADD = "add_mode"
         private const val MODE_UNKNOWN = ""
 
-
         fun newIntentAddItem(context: Context): Intent {
             val intent = Intent(context, ShopItemActivity::class.java)
             intent.putExtra(EXTRA_SCREEN_MODE, MODE_ADD)
@@ -148,7 +146,7 @@ class ShopItemActivity : AppCompatActivity() {
 
         fun newIntentEditItem(context: Context, shopItemId: Int): Intent {
             val intent = Intent(context, ShopItemActivity::class.java)
-            intent.putExtra(EXTRA_SHOP_ITEM_ID, MODE_EDIT)
+            intent.putExtra(EXTRA_SCREEN_MODE, MODE_EDIT)
             intent.putExtra(EXTRA_SHOP_ITEM_ID, shopItemId)
             return intent
         }
