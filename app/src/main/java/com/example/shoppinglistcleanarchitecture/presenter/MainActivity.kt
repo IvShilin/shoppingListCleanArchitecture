@@ -33,8 +33,7 @@ class MainActivity : AppCompatActivity() {
             if (isOnePaneMode()) {
                 val intent = newIntentAddItem(this)
                 startActivity(intent)
-            }
-            else launchFragment(ShopItemFragment.newInstanceAddItem())
+            } else launchFragment(ShopItemFragment.newInstanceAddItem())
         }
     }
 
@@ -43,7 +42,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().add(R.id.shop_item_container, fragment).commit()
+        supportFragmentManager.popBackStack()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.shop_item_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun setupRecyclerView() {
@@ -93,8 +96,7 @@ class MainActivity : AppCompatActivity() {
             if (isOnePaneMode()) {
                 val intent = newIntentEditItem(this, it.id)
                 startActivity(intent)
-            }
-            else launchFragment(ShopItemFragment.newInstanceAddItem())
+            } else launchFragment(ShopItemFragment.newInstanceEditItem(it.id))
         }
     }
 
